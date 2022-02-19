@@ -1,8 +1,14 @@
 import 'package:cartiez/helpers/category_card.dart';
 import 'package:cartiez/helpers/search_form.dart';
+import 'package:cartiez/models/product.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:cartiez/models/category.dart';
+import 'package:flutter/rendering.dart';
+
+import '../../helpers/product_card.dart';
+import '../../helpers/product_list.dart';
+import '../../helpers/section_tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -40,7 +46,7 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(defaultPadding / 2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,71 +85,20 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: defaultPadding,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "New Arrivals",
-                  style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600
-                  ),),
-                TextButton(
-                  onPressed: () {  },
-                  child: Text(
-                    "See all",
-                    style: TextStyle(
-                      color: Colors.black38,
-                      fontSize: 14
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Container(
-              width: 154,
-              padding: EdgeInsets.all(defaultPadding),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius))
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: itemBackgroundColor,
-                      borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius))
-                    ),
-                    child: Image.asset(
-                        "assets/images/product_0.png",
-                      height: 150,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          "Short Sleeve Shirts",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: defaultPadding/4,),
-                      Text(
-                          "\$120",
-                        style: Theme.of(context).textTheme.subtitle2,
-                        ),
-                    ],
-                  )
-                ],
-              ),
-            )
+            SectionTile(title: "New Arrivals", pressSeeAll: () {  },),
+            ProductList(),
+            SectionTile(title: "Popular", pressSeeAll: (){},),
+            ProductList()
           ],
         ),
       ),
     );
   }
 }
+
+
+
+
+
+
 
