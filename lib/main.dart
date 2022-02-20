@@ -1,3 +1,4 @@
+import 'package:cartiez/helpers/navigation_widget.dart';
 import 'package:cartiez/routes/pages/home_page.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           bodyText2: TextStyle(color: Colors.black54),
         ),
       ),
-      home: const HomePage(),
+      home: const BottomNavBar(),
     );
   }
 }
