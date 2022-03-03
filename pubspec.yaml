@@ -29,6 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.0.1
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,9 @@ flutter:
         - asset: assets/fonts/Gordita_Bold.otf
           weight: 700
         - asset: assets/fonts/Gordita_Light.otf
+    - family: SairaCondensed
+      fonts:
+        - asset: assets/fonts/SairaCondensed-Thin.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

@@ -1,41 +1,55 @@
-import 'package:flutter/material.dart';
+import 'Rating.dart';
 
 class Product {
-  final String image;
-  final String title;
-  final int price;
-  final Color backgroundColor;
+    String description;
+    num id;
+    String image;
+    String category;
+    num price;
+    Rating? rating;
+    String title;
 
-  Product({
-    required this.image,
-    required this.title,
-    required this.price,
-    this.backgroundColor = const Color(0xFFEFEFF2)
-});
+    Product({
+        required this.description,
+        required this.category,
+        required this.id,
+        required this.image,
+        required this.price,
+        required this.rating,
+        required this.title});
+
+    // factory Product.fromJson(Map<String, dynamic> json) {
+    //     return Product(
+    //         category: json['category'],
+    //         description: json['description'],
+    //         id: json['id'],
+    //         image: json['image'],
+    //         price: json['price'],
+    //         rating: json['rating'] != null ? Rating.fromJson(json['rating']) : null,
+    //         title: json['title'],
+    //     );
+    // }
+
+    static Product fromJson(json) => Product(
+        category: json['category'],
+                description: json['description'],
+                id: json['id'],
+                image: json['image'],
+                price: json['price'],
+                rating: json['rating'] != null ? Rating.fromJson(json['rating']) : null,
+                title: json['title'],);
+
+    Map<String, dynamic> toJson() {
+        final Map<String, dynamic> data = new Map<String, dynamic>();
+        data['category'] = this.category;
+        data['description'] = this.description;
+        data['id'] = this.id;
+        data['image'] = this.image;
+        data['price'] = this.price;
+        data['title'] = this.title;
+        if (this.rating != null) {
+            data['rating'] = this.rating!.toJson();
+        }
+        return data;
+    }
 }
-
-List<Product> demoProduct = [
-  Product(
-    image: "assets/images/product_0.png",
-    title: "Short Sleeve Shirts",
-    price: 165,
-    backgroundColor: const Color(0xFFFEFBF9),
-  ),
-  Product(
-    image: "assets/images/product_1.png",
-    title: "Casual Henley Shirts",
-    price: 99,
-  ),
-  Product(
-    image: "assets/images/product_2.png",
-    title: "Curved Hem Shirts",
-    price: 180,
-    backgroundColor: const Color(0xFFF8FEFB),
-  ),
-  Product(
-    image: "assets/images/product_3.png",
-    title: "Casual Nolin",
-    price: 149,
-    backgroundColor: const Color(0xFFEEEEED),
-  ),
-];

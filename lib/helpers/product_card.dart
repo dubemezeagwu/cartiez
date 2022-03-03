@@ -13,7 +13,7 @@ class ProductCard extends StatelessWidget {
   }) : super(key: key);
 
   final String title,image;
-  final int price;
+  final num price;
   final Color backgroundColor;
   final VoidCallback press;
 
@@ -36,10 +36,7 @@ class ProductCard extends StatelessWidget {
                   color: backgroundColor,
                   borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius))
               ),
-              child: Image.asset(
-                image,
-                height: 150,
-              ),
+              child: Image.network(image, height: 150,),
             ),
             const SizedBox(height: defaultPadding/2),
             Row(
@@ -47,6 +44,7 @@ class ProductCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
+                    overflow: title.length > 5 ? TextOverflow.ellipsis : null,
                     style: TextStyle(
                       color: Colors.black,
                     ),

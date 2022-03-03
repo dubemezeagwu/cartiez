@@ -69,26 +69,30 @@ class _HomePageState extends State<HomePage> {
                   vertical: defaultPadding
                 ),
                 child: SearchForm()),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(children:
-              List.generate(
-                  sampleCategories.length,
-                      (index) => Padding(
-                        padding: const EdgeInsets.only(right: defaultPadding),
-                        child: CategoryCard(
-                  icon: sampleCategories[index].icon,
-                  title: sampleCategories[index].title,
-                  press: (){}),
-                      )),),
+            SizedBox(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: sampleCategories.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.only(right: defaultPadding),
+                    child: CategoryCard(
+                        icon: sampleCategories[index].icon,
+                        title: sampleCategories[index].title,
+                        press: (){}),
+                  )),
             ),
             SizedBox(
               height: defaultPadding,
             ),
             SectionTile(title: "New Arrivals", pressSeeAll: () {  },),
-            ProductList(),
+            SizedBox(
+              height: 300,
+                child: ProductList()),
             SectionTile(title: "Popular", pressSeeAll: (){},),
-            ProductList()
+            SizedBox(
+              height: 300,
+                child: ProductList())
           ],
         ),
       ),
