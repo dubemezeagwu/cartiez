@@ -30,7 +30,7 @@ class Product {
     //     );
     // }
 
-    static Product fromJson(json) => Product(
+    factory Product.fromJson(Map<String, dynamic>json) => Product(
         category: json['category'],
                 description: json['description'],
                 id: json['id'],
@@ -52,4 +52,6 @@ class Product {
         }
         return data;
     }
+
+    
 }

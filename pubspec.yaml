@@ -30,6 +30,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.0.1
   http: ^0.13.4
+  rxdart: ^0.27.3
+  bloc: ^8.0.3
+  flutter_bloc: ^8.0.1
+  animated_splash_screen: ^1.2.0
+  lottie: ^1.2.2
+  page_transition: '^2.0.5'
+
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +57,7 @@ flutter:
   assets:
      - assets/icons/
      - assets/images/
+     - assets/anim/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

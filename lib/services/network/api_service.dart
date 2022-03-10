@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cartiez/models/product.dart';
+import 'package:cartiez/models/product_response.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
@@ -24,6 +25,6 @@ class ApiService {
     final response = await http.get(Uri.parse("https://fakestoreapi.com/products"));
     final body = json.decode(response.body);
 
-    return body.map<Product>(Product.fromJson).toList();
+    return body.map<Product>((product) => Product.fromJson(product)).toList();
   }
 }
