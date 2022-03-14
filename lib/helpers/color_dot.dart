@@ -14,9 +14,9 @@ class ColorDot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(defaultPadding / 4),
+      padding: EdgeInsets.all(Constants.defaultPadding / 4),
       decoration: BoxDecoration(
-        border: Border.all(color: isActive ? primaryColor : Colors.transparent),
+        border: Border.all(color: isActive ? Constants.primaryColor : Colors.transparent),
         shape: BoxShape.circle,
       ),
       child: CircleAvatar(

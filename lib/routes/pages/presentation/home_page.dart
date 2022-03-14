@@ -1,14 +1,11 @@
 import 'package:cartiez/helpers/category_card.dart';
 import 'package:cartiez/helpers/search_form.dart';
-import 'package:cartiez/models/product.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:cartiez/models/category.dart';
 import 'package:flutter/rendering.dart';
-
-import '../../helpers/product_card.dart';
-import '../../helpers/product_list.dart';
-import '../../helpers/section_tile.dart';
+import '../../../helpers/product_list.dart';
+import '../../../helpers/section_tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: bgColor,
+        backgroundColor: Constants.bgColor,
         elevation: 0,
         title: Text(
           "Cartiez",
@@ -47,7 +44,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(defaultPadding / 2),
+        padding: const EdgeInsets.all(Constants.defaultPadding / 2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -66,7 +63,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: defaultPadding
+                  vertical: Constants.defaultPadding
                 ),
                 child: SearchForm()),
             SizedBox(
@@ -75,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                 scrollDirection: Axis.horizontal,
                 itemCount: sampleCategories.length,
                   itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.only(right: defaultPadding),
+                    padding: const EdgeInsets.only(right: Constants.defaultPadding),
                     child: CategoryCard(
                         icon: sampleCategories[index].icon,
                         title: sampleCategories[index].title,
@@ -83,9 +80,9 @@ class _HomePageState extends State<HomePage> {
                   )),
             ),
             SizedBox(
-              height: defaultPadding,
+              height: Constants.defaultPadding,
             ),
-            SectionTile(title: "New Arrivals", pressSeeAll: () {  },),
+            SectionTile(title: "New Arrivals", pressSeeAll: () { },),
             SizedBox(
               height: 300,
                 child: ProductList()),

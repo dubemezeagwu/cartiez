@@ -20,9 +20,9 @@ class SearchForm extends StatelessWidget {
             suffixIcon: ElevatedButton(
               onPressed: () {  },
               style: ElevatedButton.styleFrom(
-                  primary: primaryColor,
+                  primary: Constants.primaryColor,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius))
+                      borderRadius: BorderRadius.all(Radius.circular(Constants.defaultBorderRadius))
                   )
               ),
               child: Icon(Icons.filter_list),
@@ -35,6 +35,6 @@ class SearchForm extends StatelessWidget {
 
 const outlineInputBorder = const OutlineInputBorder(
     borderRadius: BorderRadius.all(
-        Radius.circular(defaultBorderRadius)),
+        Radius.circular(Constants.defaultBorderRadius)),
     borderSide: BorderSide.none
 );

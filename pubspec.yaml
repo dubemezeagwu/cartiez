@@ -33,9 +33,16 @@ dependencies:
   rxdart: ^0.27.3
   bloc: ^8.0.3
   flutter_bloc: ^8.0.1
+  flutter_spinkit: ^5.1.0
   animated_splash_screen: ^1.2.0
+  provider: ^6.0.2
   lottie: ^1.2.2
   page_transition: '^2.0.5'
+
+  #firebase
+  cloud_firestore: ^3.1.10
+  firebase_auth: ^3.3.10
+  firebase_core: ^1.13.1
 
 
 dev_dependencies:

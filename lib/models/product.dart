@@ -1,4 +1,4 @@
-import 'Rating.dart';
+import 'rating.dart';
 
 class Product {
     String description;

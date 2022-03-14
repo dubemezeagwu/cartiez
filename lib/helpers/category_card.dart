@@ -20,18 +20,18 @@ class CategoryCard extends StatelessWidget {
         onPressed: press,
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius))
+            borderRadius: BorderRadius.all(Radius.circular(Constants.defaultBorderRadius))
           )
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: defaultPadding / 4,
-            vertical: defaultPadding /2,
+            horizontal: Constants.defaultPadding / 4,
+            vertical: Constants.defaultPadding /2,
           ),
           child: Column(
             children: [
               SvgPicture.asset(icon),
-              SizedBox(height: defaultPadding / 2),
+              SizedBox(height: Constants.defaultPadding / 2),
               Text(
                 title,
                 style: Theme.of(context).textTheme.subtitle2,

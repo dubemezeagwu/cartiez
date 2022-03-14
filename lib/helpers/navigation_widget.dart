@@ -1,9 +1,9 @@
-import 'package:cartiez/routes/pages/checkout_page.dart';
-import 'package:cartiez/routes/pages/profile_page.dart';
+import 'package:cartiez/routes/pages/presentation/checkout_page.dart';
+import 'package:cartiez/routes/pages/presentation/profile_page.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../routes/pages/home_page.dart';
+import '../routes/pages/presentation/home_page.dart';
 
 // Bottom Navbar for the app.
 class BottomNavBar extends StatefulWidget {
@@ -47,7 +47,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           onTap: onTapped,
           currentIndex: _selectedPageIndex,
           showUnselectedLabels: false,
-          selectedItemColor: primaryColor,)
+          selectedItemColor: Constants.primaryColor,)
     );
 
   }

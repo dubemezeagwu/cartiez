@@ -1,14 +1,17 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:cartiez/helpers/navigation_widget.dart';
-import 'package:cartiez/routes/pages/home_page.dart';
+import 'package:cartiez/routes/pages/authentication/register_page.dart';
+import 'package:cartiez/routes/pages/presentation/home_page.dart';
 import 'package:cartiez/utils/constants.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: bgColor,
+        scaffoldBackgroundColor: Constants.bgColor,
         primarySwatch: Colors.blue,
         fontFamily: "Gordita",
         appBarTheme: AppBarTheme(
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: AnimatedSplashScreen(
-          nextScreen: const BottomNavBar(),
+          nextScreen: const RegisterPage(),
             pageTransitionType: PageTransitionType.bottomToTop,
           splashIconSize: 300.0,
           splash: LottieBuilder.asset(

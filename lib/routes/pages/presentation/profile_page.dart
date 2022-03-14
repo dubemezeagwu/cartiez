@@ -17,7 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: defaultPadding),
+            padding: const EdgeInsets.only(top: Constants.defaultPadding),
             child: ReusableCard(
               boxShadowColor: Colors.blueGrey,
                 child: Row(

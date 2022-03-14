@@ -26,7 +26,7 @@ class CardDetails extends StatelessWidget {
         Align(
           alignment: Alignment.topLeft,
           child: Padding(
-            padding: const EdgeInsets.all(defaultPadding),
+            padding: const EdgeInsets.all(Constants.defaultPadding),
             child: Text(
                 "Platinum Card",
               style: TextStyle(
@@ -39,7 +39,7 @@ class CardDetails extends StatelessWidget {
         Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
-            padding: const EdgeInsets.all(defaultPadding),
+            padding: const EdgeInsets.all(Constants.defaultPadding),
             child: Text(
               "JONAH MOSS",
               style: TextStyle(
@@ -52,7 +52,7 @@ class CardDetails extends StatelessWidget {
         Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
-            padding: const EdgeInsets.only(bottom : defaultPadding * 2.5, left: defaultPadding),
+            padding: const EdgeInsets.only(bottom : Constants.defaultPadding * 2.5, left: Constants.defaultPadding),
             child: Text(
               "**** **** **** 5682",
               style: TextStyle(
@@ -64,14 +64,14 @@ class CardDetails extends StatelessWidget {
         Align(
           alignment: Alignment. bottomLeft,
           child: Padding(
-            padding: const EdgeInsets.only(bottom : defaultPadding * 5, left: defaultPadding),
+            padding: const EdgeInsets.only(bottom : Constants.defaultPadding * 5, left: Constants.defaultPadding),
             child: Container(
               alignment: Alignment.bottomRight,
               width: width / 6,
               height: height / 16,
               decoration: BoxDecoration(
                   color: Colors.grey,
-                  boxShadow: neumorpShadow,
+                  boxShadow: Constants.neumorpShadow,
                   borderRadius: BorderRadius.circular(20)),
             ),
           ),

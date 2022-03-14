@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "538854331791",
+    "project_id": "cartiez",
+    "storage_bucket": "cartiez.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538854331791:android:3cfbe699a6d9ac678f67fa",
+        "android_client_info": {
+          "package_name": "com.example.cartiez"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "538854331791-e14ebk9udpculef1eln5ibv34q15cam9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNWffKhgjnaT7VKYzsk-70FhgyETXwVOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "538854331791-e14ebk9udpculef1eln5ibv34q15cam9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

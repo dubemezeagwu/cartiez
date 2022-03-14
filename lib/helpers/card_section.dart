@@ -32,7 +32,7 @@ class CardSection extends StatelessWidget {
                     margin: EdgeInsets.symmetric( horizontal: 20, vertical: 40),
                     decoration: BoxDecoration(
                       color: Colors.black54,
-                        boxShadow: neumorpShadow,
+                        boxShadow: Constants.neumorpShadow,
                         borderRadius: BorderRadius.circular(20)
                     ),
 

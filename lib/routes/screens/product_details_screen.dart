@@ -38,19 +38,23 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       ),
       body: Column(
         children: [
-          Image.asset(
+          Image.network(
               widget.product.image,
           height: MediaQuery.of(context).size.height * 0.4,
           fit: BoxFit.cover,),
-          const SizedBox(height: defaultPadding,),
+          const SizedBox(height: Constants.defaultPadding,),
           Expanded(
               child: Container(
-                padding: EdgeInsets.fromLTRB(defaultPadding, defaultPadding * 1.5, defaultPadding, defaultPadding),
+                padding: EdgeInsets.fromLTRB(
+                    Constants.defaultPadding,
+                    Constants.defaultPadding * 1.5,
+                    Constants.defaultPadding,
+                    Constants.defaultPadding),
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(defaultBorderRadius * 3),
-                    topRight: Radius.circular(defaultBorderRadius * 3)
+                    topLeft: Radius.circular(Constants.defaultBorderRadius * 3),
+                    topRight: Radius.circular(Constants.defaultBorderRadius * 3)
                   )
                 ),
                 child: SingleChildScrollView(
@@ -64,19 +68,19 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 widget.product.title,
                             style: Theme.of(context).textTheme.headline6,),
                           ),
-                          SizedBox(width: defaultPadding,),
+                          SizedBox(width: Constants.defaultPadding,),
                           Text("\$" + widget.product.price.toString(), style: Theme.of(context).textTheme.headline6,),
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+                        padding: const EdgeInsets.symmetric(vertical: Constants.defaultPadding),
                         child: Text("Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia."),
                       ),
                       Text(
                         "Colors",
                         style: Theme.of(context).textTheme.subtitle2,
                       ),
-                      const SizedBox(height: defaultPadding / 2),
+                      const SizedBox(height: Constants.defaultPadding / 2),
                       Row(
                         children: const [
                           ColorDot(
@@ -93,7 +97,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: defaultPadding * 2,),
+                      const SizedBox(height: Constants.defaultPadding * 2,),
                       Center(
                         child: SizedBox(
                         width: 200,
@@ -101,7 +105,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         child: ElevatedButton(
                           onPressed: () {  },
                           style: ElevatedButton.styleFrom(
-                            primary: primaryColor,
+                            primary: Constants.primaryColor,
                             shape: const StadiumBorder()
                           ),
                           child: Text("Add to Cart"),)

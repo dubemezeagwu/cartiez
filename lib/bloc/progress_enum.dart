@@ -1,0 +1,3 @@
+enum Progress {
+  SUCCESS, FAILED
+}

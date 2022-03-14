@@ -1,7 +1,6 @@
 import 'package:cartiez/helpers/product_card.dart';
 import 'package:cartiez/routes/screens/product_details_screen.dart';
 import 'package:cartiez/services/network/api_service.dart';
-import 'package:cartiez/utils/size.dart';
 import 'package:flutter/material.dart';
 
 import '../models/product.dart';
@@ -18,36 +17,26 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
 
-  List<Product>? futureProducts;
+  ApiService _apiService = ApiService();
 
-  @override
-  void initState() {
-    super.initState();
-    // fetchProducts();
 
-  }
-
-  // void fetchProducts () async{
-  //   futureProducts = await ApiService().fetchProducts();
-  // }
   @override
   Widget build(BuildContext context) {
 
     return FutureBuilder<List<Product>>(
-      future: ApiService.getProducts(),
+      future: _apiService.fetchProducts(),
       builder: (context, snapshot) {
-        final products = snapshot.data;
-        print("Data 1: ${ApiService.getProducts()}");
         if (snapshot.hasError){
           print("Error from data: ${snapshot.error}");
         }
         if (snapshot.hasData){
+          print("snapshot has data");
           return ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) =>
                   Padding(
-                    padding: EdgeInsets.all(defaultPadding),
+                    padding: EdgeInsets.all(Constants.defaultPadding),
                     child: ProductCard(
                         image: snapshot.data![index].image,
                         title: snapshot.data![index].title,
