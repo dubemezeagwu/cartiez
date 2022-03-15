@@ -7,16 +7,20 @@ import 'package:rxdart/rxdart.dart';
 final productsBloc = ProductsListBloc();
 
 class ProductsListBloc with ChangeNotifier{
+
+  // Network object instance
   final ApiService _apiService = ApiService();
   Progress result = Progress.FAILED;
-  final BehaviorSubject<List<Product>> _behaviorSubject = BehaviorSubject<List<Product>>();
 
-  // Future<Progress> getProducts () async {
-  //   await _apiService.fetchProducts().then((response) {
-  //     result = Progress.SUCCESS;
-  //     this._behaviorSubject.sink.add(response);
-  //   });
-  // }
+  final BehaviorSubject<List<Product>> _behaviorSubject = BehaviorSubject<List<Product>>();
+  Future getProducts () async {
+    await _apiService.fetchProducts().then((response) {
+      result = Progress.SUCCESS;
+      this._behaviorSubject.sink.add(response);
+    });
+  }
+
+  get allProducts => _behaviorSubject.stream;
 
   @mustCallSuper
   dispose (){

@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:cartiez/services/network/network_exception.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
@@ -72,6 +75,18 @@ class Constants{
   }
 
   static dynamic returnApiResponse(http.Response response){
+    switch (response.statusCode){
+      case 200:
+        var responseJson = jsonDecode(response.body.toString());
+        print(responseJson);
+        return responseJson;
+      case 400:
+        throw BadRequestException( message: response.body.toString());
+      case 403:
+        throw UnauthorisedException(message: response.body.toString());
+      default:
+        throw FetchDataException(message: response.body.toString());
+    }
 
   }
 }

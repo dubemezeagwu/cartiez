@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: AnimatedSplashScreen(
-          nextScreen: const LoginPage(),
+          nextScreen: const BottomNavBar(),
             pageTransitionType: PageTransitionType.bottomToTop,
           splashIconSize: 300.0,
           splash: LottieBuilder.asset(
