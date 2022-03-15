@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:cartiez/helpers/navigation_widget.dart';
+import 'package:cartiez/routes/pages/authentication/login_page.dart';
 import 'package:cartiez/routes/pages/authentication/register_page.dart';
 import 'package:cartiez/routes/pages/presentation/home_page.dart';
 import 'package:cartiez/utils/constants.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: AnimatedSplashScreen(
-          nextScreen: const RegisterPage(),
+          nextScreen: const LoginPage(),
             pageTransitionType: PageTransitionType.bottomToTop,
           splashIconSize: 300.0,
           splash: LottieBuilder.asset(

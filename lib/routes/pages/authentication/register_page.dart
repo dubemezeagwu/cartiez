@@ -2,6 +2,7 @@ import 'package:cartiez/services/authentication/authentication_service.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:cartiez/utils/shape/bezier_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'login_page.dart';
 
@@ -19,6 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextStyle style = TextStyle(fontFamily: 'Roboto', fontSize: 20.0);
   late TextEditingController _userEmail;
   late TextEditingController _userPassword;
+  late TextEditingController _userConfirmPassword;
   final _formPageKey = GlobalKey<FormState>();
   final _pageKey = GlobalKey<ScaffoldState>();
 
@@ -29,60 +31,65 @@ class _RegisterPageState extends State<RegisterPage> {
     super.initState();
     _userEmail = TextEditingController(text: "");
     _userPassword = TextEditingController( text: "");
+    _userConfirmPassword = TextEditingController( text: "");
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _pageKey,
-      body: Form(
-        key: _formPageKey,
-        child: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  left: -MediaQuery.of(context).size.width * .24,
-                  top: -MediaQuery.of(context).size.height * .24,
-                    child: BezierContainer()),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        key: _pageKey,
+        body: Form(
+          key: _formPageKey,
+          child: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    left: -MediaQuery.of(context).size.width * .24,
+                    top: -MediaQuery.of(context).size.height * .24,
+                      child: BezierContainer()),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
 
-                    children: [
-                      Expanded(
-                        flex: 3,
-                          child: SizedBox()
-                      ),
-                      Text(
-                          "Cartiez",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Roboto')),
-                      SizedBox(height: 50,),
-                      _emailPasswordWidget(),
-                      SizedBox(height: 20,),
-                      _registerButton(),
-                      Expanded(
-                          child: SizedBox(),
-                          flex: 2,
-                      )
-                    ],
+                      children: [
+                        Expanded(
+                          flex: 3,
+                            child: SizedBox(),
+                        ),
+                        Text(
+                          "CARTIEZ",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 28,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'Roboto'),
+                        ),
+                        SizedBox(height: 50,),
+                        _emailPasswordWidget(),
+                        SizedBox(height: 20,),
+                        _registerButton(),
+                        Expanded(
+                            child: SizedBox(),
+                            flex: 2,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: _loginAccountLabel(),
-                ),
-                Positioned(
-                  top: 40,
-                    left: 0,
-                    child: _backButton())
-              ],
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: _loginAccountLabel(),
+                  ),
+                  Positioned(
+                    top: 40,
+                      left: 0,
+                      child: _backButton())
+                ],
+              ),
             ),
           ),
         ),
@@ -162,9 +169,8 @@ class _RegisterPageState extends State<RegisterPage> {
           height: 10,
         ),
         _passwordField(),
-        TextButton(
-            onPressed: _togglePassword,
-            child: new Text(_obscureText ? "Show" : "Hide")),
+        SizedBox(height: 10),
+        _confirmPasswordField(),
       ],
     );
   }
@@ -177,6 +183,7 @@ class _RegisterPageState extends State<RegisterPage> {
       validator: (value) => (value!.isEmpty) ? "Please Enter Email" : null,
       style: style,
       decoration: InputDecoration(
+          floatingLabelBehavior: FloatingLabelBehavior.never,
           prefixIcon: Icon(Icons.email),
           labelText: "Email",
           border: OutlineInputBorder()),
@@ -188,11 +195,38 @@ class _RegisterPageState extends State<RegisterPage> {
       key: Key("userPassword"),
       controller: _userPassword,
       obscureText: _obscureText,
+      enableInteractiveSelection: false,
       validator: (value) => (value!.isEmpty) ? "Please Enter Password" : null,
       style: style,
       decoration: InputDecoration(
+          floatingLabelBehavior: FloatingLabelBehavior.never,
           prefixIcon: Icon(Icons.lock),
+          suffix: GestureDetector(
+            onTap: _togglePassword,
+            child: Text(_obscureText ? "Show" : "Hide",
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.blueAccent
+            ),
+            ),
+          ),
           labelText: "Password",
+          border: OutlineInputBorder()),
+    );
+  }
+
+  Widget _confirmPasswordField() {
+    return TextFormField(
+      key: Key("userConfirmPassword"),
+      controller: _userConfirmPassword,
+      obscureText: _obscureText,
+      enableInteractiveSelection: false,
+      validator: (value) => (value!.isEmpty) ? "Password does not match" : null,
+      style: style,
+      decoration: InputDecoration(
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          prefixIcon: Icon(Icons.lock),
+          labelText: "Confirm Password",
           border: OutlineInputBorder()),
     );
   }
@@ -219,7 +253,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Text(
               'Login',
               style: TextStyle(
-                  color: Colors.black,
+                  color: Constants.primaryColor,
                   fontSize: 13,
                   fontWeight: FontWeight.w600),
             ),

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
-// App color constants
 
+// App color constants
 class Constants{
 
   static const Color primaryColor = Color(0xFF5262F6);
   static const Color bgColor = Color(0xFFFBFBFD);
   static const Color itemBackgroundColor= Color(0xFFEFEFF2);
   static const Color popupItemBackColor = Color(0xFFDADADB);
-  static const Color gradientBackgroundColorEnd = Color(0xFF601A36);
+  static const Color gradientBackgroundColorEnd = Color(0xFF545FC7);
   static const Color gradientBackgroundColorWhite = Color(0xFFFFFFFF);
-  static const Color gradientBackgroundColorStart = Color(0xFF4D0F29);
+  static const Color gradientBackgroundColorStart = Color(0xFF4654DC);
 
   static const double defaultPadding = 16.0;
   static const double defaultBorderRadius = 12.0;
