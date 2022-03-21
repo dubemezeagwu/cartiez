@@ -1,9 +1,8 @@
 import 'dart:convert';
-
-import 'package:cartiez/services/network/network_exception.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
+import '../data/services/network/network_exception.dart';
 
 // App color constants
 class Constants{
