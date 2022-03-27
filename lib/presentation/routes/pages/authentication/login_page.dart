@@ -1,8 +1,11 @@
 import 'package:cartiez/presentation/routes/pages/authentication/register_page.dart';
 import 'package:cartiez/utils/shape/bezier_container.dart';
+import 'package:cartiez/utils/size_config.dart';
+import 'package:cartiez/utils/styles.dart';
 import 'package:flutter/material.dart';
 import '../../../../data/services/authentication/authentication_service.dart';
 import '../../../../utils/constants.dart';
+import '../../../helpers/custom_textfield.dart';
 
 
 
@@ -23,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   late TextEditingController _userPassword;
   final _formPageKey = GlobalKey<FormState>();
   final _pageKey = GlobalKey<ScaffoldState>();
+  FocusNode _focusNode = FocusNode();
 
   bool isLoading = false;
 
@@ -35,6 +39,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -61,8 +66,8 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 28,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Roboto'),
+                              fontWeight: FontWeight.w400
+                          ),
                         ),
                         SizedBox(
                           height: 50,
@@ -119,43 +124,70 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _emailField() {
-    return TextFormField(
-      key: Key("userEmail"),
+    return CustomTextField(
+      enabled: true,
+      title: 'Email',
+      textFormKey: Key("userEmail"),
       controller: _userEmail,
+      obscureText: _obscureText,
+      enableInteractive: false,
       validator: (value) => (value!.isEmpty) ? "Please Enter Email" : null,
-      style: style,
-      decoration: InputDecoration(
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          prefixIcon: Icon(Icons.email),
-          labelText: "Email",
-          border: OutlineInputBorder()),
+      prefixIcon: Icon(Icons.email),
+
     );
+    // return TextFormField(
+    //   key: Key("userEmail"),
+    //   controller: _userEmail,
+    //   validator: (value) => (value!.isEmpty) ? "Please Enter Email" : null,
+    //   style: style,
+    //   decoration: InputDecoration(
+    //       floatingLabelBehavior: FloatingLabelBehavior.never,
+    //       prefixIcon: Icon(Icons.email),
+    //       labelText: "Email",
+    //       border: OutlineInputBorder()),
+    // );
   }
 
   Widget _passwordField() {
-    return Container(
-      child: TextFormField(
-        key: Key("userPassword"),
-        controller: _userPassword,
-        obscureText: _obscureText,
-        enableInteractiveSelection: false,
-        validator: (value) => (value!.isEmpty) ? "Please Enter Password" : null,
-        style: style,
-        decoration: InputDecoration(
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-            prefixIcon: Icon(Icons.lock),
-            suffix: GestureDetector(
-              onTap: _togglePassword,
-              child: Text( _obscureText ? "Show" : "Hide",
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.blueAccent
-                ),),
-            ),
-            labelText: "Password",
-            border: OutlineInputBorder()),
+    return CustomTextField(
+      enabled: true,
+      title: 'Password',
+      textFormKey: Key("userPassword"),
+      controller: _userPassword,
+      obscureText: _obscureText,
+      enableInteractive: false,
+      validator: (value) => (value!.isEmpty) ? "Please Enter Password" : null,
+      prefixIcon: Icon(Icons.lock),
+      suffixIcon: GestureDetector(
+        onTap: _togglePassword,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: Text(_obscureText ? "Show" : "Hide", style: regular11,),
+        ),
       ),
+
     );
+    // return TextFormField(
+    //   key: Key("userPassword"),
+    //   controller: _userPassword,
+    //   obscureText: _obscureText,
+    //   enableInteractiveSelection: false,
+    //   validator: (value) => (value!.isEmpty) ? "Please Enter Password" : null,
+    //   style: style,
+    //   decoration: InputDecoration(
+    //     floatingLabelBehavior: FloatingLabelBehavior.never,
+    //       prefixIcon: Icon(Icons.lock),
+    //       suffix: GestureDetector(
+    //         onTap: _togglePassword,
+    //         child: Text( _obscureText ? "Show" : "Hide",
+    //           style: TextStyle(
+    //             fontSize: 15,
+    //             color: Colors.blueAccent
+    //           ),),
+    //       ),
+    //       labelText: "Password",
+    //       border: OutlineInputBorder()),
+    // );
   }
 
   Widget _loginButton() {

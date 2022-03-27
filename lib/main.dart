@@ -1,10 +1,12 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:cartiez/bloc/checkout_cart_bloc.dart';
 import 'package:cartiez/presentation/routes/pages/authentication/login_page.dart';
+import 'package:cartiez/presentation/routes/pages/authentication/register_page.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -28,9 +30,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          colorScheme: ThemeData().colorScheme.copyWith(
+              primary: Constants.primaryColor,),
           scaffoldBackgroundColor: Constants.bgColor,
           primarySwatch: Colors.blue,
-          fontFamily: "Gordita",
+          fontFamily: GoogleFonts.montserrat().fontFamily,
           appBarTheme: AppBarTheme(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -40,7 +44,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         home: AnimatedSplashScreen(
-            nextScreen: const LoginPage(),
+            nextScreen: const RegisterPage(),
             pageTransitionType: PageTransitionType.bottomToTop,
             splashIconSize: 300.0,
             splash: LottieBuilder.asset(

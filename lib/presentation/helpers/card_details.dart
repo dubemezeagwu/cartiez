@@ -1,7 +1,7 @@
 import 'package:cartiez/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/size.dart';
+import '../../utils/size_config.dart';
 
 
 
@@ -11,8 +11,8 @@ class CardDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = SizeConfig.getHeight(context);
-    var width = SizeConfig.getWidth(context);
+    var height = SizeConfig.screenHeight;
+    var width = SizeConfig.screenWidth;
     return Stack(
       children: <Widget>[
         Align(
@@ -69,8 +69,8 @@ class CardDetails extends StatelessWidget {
             padding: const EdgeInsets.only(bottom : Constants.defaultPadding * 5, left: Constants.defaultPadding),
             child: Container(
               alignment: Alignment.bottomRight,
-              width: width / 6,
-              height: height / 16,
+              width: width! / 6,
+              height: height! / 16,
               decoration: BoxDecoration(
                   color: Colors.grey,
                   boxShadow: Constants.neumorpShadow,

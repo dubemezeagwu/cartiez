@@ -1,7 +1,10 @@
+import 'package:cartiez/presentation/helpers/custom_textfield.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:cartiez/utils/shape/bezier_container.dart';
+import 'package:cartiez/utils/styles.dart';
 import 'package:flutter/material.dart';
 import '../../../../data/services/authentication/authentication_service.dart';
+import '../../../../utils/size_config.dart';
 import 'login_page.dart';
 
 // Register page where the user provides credentials to register on the app.
@@ -22,6 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   late TextEditingController _userConfirmPassword;
   final _formPageKey = GlobalKey<FormState>();
   final _pageKey = GlobalKey<ScaffoldState>();
+  FocusNode _focusNode = FocusNode();
 
   bool isLoading = false;
 
@@ -34,6 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -66,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               color: Colors.black,
                               fontSize: 28,
                               fontWeight: FontWeight.w400,
-                              fontFamily: 'Roboto'),
+                          ),
                         ),
                         SizedBox(height: 50,),
                         _emailPasswordWidget(),
@@ -176,57 +181,49 @@ class _RegisterPageState extends State<RegisterPage> {
 
   // Email field Widget
   Widget _emailField() {
-    return TextFormField(
-      key: Key("userEmail"),
+    return CustomTextField(
+      enabled: true,
+      title: 'Email',
+      textFormKey: Key("userEmail"),
       controller: _userEmail,
+      obscureText: _obscureText,
+      enableInteractive: false,
       validator: (value) => (value!.isEmpty) ? "Please Enter Email" : null,
-      style: style,
-      decoration: InputDecoration(
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          prefixIcon: Icon(Icons.email),
-          labelText: "Email",
-          border: OutlineInputBorder()),
+      prefixIcon: Icon(Icons.email),
     );
   }
 
   Widget _passwordField() {
-    return TextFormField(
-      key: Key("userPassword"),
+    return CustomTextField(
+      enabled: true,
+      title: 'Show Password',
+      textFormKey: Key("userPassword"),
       controller: _userPassword,
       obscureText: _obscureText,
-      enableInteractiveSelection: false,
-      validator: (value) => (value!.isEmpty) ? "Please Enter Password" : null,
-      style: style,
-      decoration: InputDecoration(
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          prefixIcon: Icon(Icons.lock),
-          suffix: GestureDetector(
-            onTap: _togglePassword,
-            child: Text(_obscureText ? "Show" : "Hide",
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.blueAccent
-            ),
-            ),
-          ),
-          labelText: "Password",
-          border: OutlineInputBorder()),
+      enableInteractive: false,
+      validator: (value) => (value!.isEmpty) ? "Password does not match" : null,
+      prefixIcon: Icon(Icons.lock),
+      suffixIcon: GestureDetector(
+        onTap: _togglePassword,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 15.0),
+          child: Text(_obscureText ? "Show" : "Hide", style: regular11,),
+        ),
+      ),
     );
   }
 
   Widget _confirmPasswordField() {
-    return TextFormField(
-      key: Key("userConfirmPassword"),
+    return CustomTextField(
+      enabled: true,
+      title: 'Confirm Password',
+      textFormKey: Key("userConfirmPassword"),
       controller: _userConfirmPassword,
       obscureText: _obscureText,
-      enableInteractiveSelection: false,
+      enableInteractive: false,
       validator: (value) => (value!.isEmpty) ? "Password does not match" : null,
-      style: style,
-      decoration: InputDecoration(
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          prefixIcon: Icon(Icons.lock),
-          labelText: "Confirm Password",
-          border: OutlineInputBorder()),
+      prefixIcon: Icon(Icons.lock),
+
     );
   }
 

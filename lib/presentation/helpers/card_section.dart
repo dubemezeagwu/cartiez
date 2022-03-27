@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/constants.dart';
-import '../../utils/size.dart';
+import '../../utils/size_config.dart';
 import 'card_details.dart';
 
 
@@ -13,13 +13,13 @@ class CardSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = SizeConfig.getHeight(context);
-    var width = SizeConfig.getWidth(context);
+    SizeConfig().init(context);
+    var width = SizeConfig.screenWidth;
     return Expanded(
       child: Column(
         children: [
           Container(
-              margin: EdgeInsets.symmetric(horizontal: width / 20),
+              margin: EdgeInsets.symmetric(horizontal: width! / 20),
               alignment: Alignment.centerLeft,
               child: Text("Your Cards", style: TextStyle(
                   color: Colors.black, fontSize:22, fontWeight: FontWeight.bold),)
