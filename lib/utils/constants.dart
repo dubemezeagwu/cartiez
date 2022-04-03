@@ -7,13 +7,13 @@ import '../data/services/network/network_exception.dart';
 // App color constants
 class Constants{
 
-  static const Color primaryColor = Color(0xFF5262F6);
+  static const Color primaryColor = Color(0xFF6D90B9);
   static const Color bgColor = Color(0xFFFBFBFD);
   static const Color itemBackgroundColor= Color(0xFFEFEFF2);
   static const Color popupItemBackColor = Color(0xFFDADADB);
-  static const Color gradientBackgroundColorEnd = Color(0xFF545FC7);
+  static const Color gradientBackgroundColorEnd = Color(0xFFBBC7DC);
   static const Color gradientBackgroundColorWhite = Color(0xFFFFFFFF);
-  static const Color gradientBackgroundColorStart = Color(0xFF4654DC);
+  static const Color gradientBackgroundColorStart = Color(0xFF6D90B9);
   static const kDarkColor = Color(0xFF000000);
   static const kBackground = Color(0xFFF4F6FA);
   static const kBlackColor = Color(0xFF1C1F37);

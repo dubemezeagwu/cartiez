@@ -26,7 +26,6 @@ class _LoginPageState extends State<LoginPage> {
   late TextEditingController _userPassword;
   final _formPageKey = GlobalKey<FormState>();
   final _pageKey = GlobalKey<ScaffoldState>();
-  FocusNode _focusNode = FocusNode();
 
   bool isLoading = false;
 
@@ -48,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
           key: _formPageKey,
           child: SingleChildScrollView(
             child: Container(
-              height: MediaQuery.of(context).size.height,
+              height: SizeConfig.screenHeight,
               child: Stack(
                 children: <Widget>[
                   Container(
@@ -129,23 +128,12 @@ class _LoginPageState extends State<LoginPage> {
       title: 'Email',
       textFormKey: Key("userEmail"),
       controller: _userEmail,
-      obscureText: _obscureText,
+      obscureText: false,
       enableInteractive: false,
       validator: (value) => (value!.isEmpty) ? "Please Enter Email" : null,
       prefixIcon: Icon(Icons.email),
 
     );
-    // return TextFormField(
-    //   key: Key("userEmail"),
-    //   controller: _userEmail,
-    //   validator: (value) => (value!.isEmpty) ? "Please Enter Email" : null,
-    //   style: style,
-    //   decoration: InputDecoration(
-    //       floatingLabelBehavior: FloatingLabelBehavior.never,
-    //       prefixIcon: Icon(Icons.email),
-    //       labelText: "Email",
-    //       border: OutlineInputBorder()),
-    // );
   }
 
   Widget _passwordField() {
@@ -167,27 +155,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
 
     );
-    // return TextFormField(
-    //   key: Key("userPassword"),
-    //   controller: _userPassword,
-    //   obscureText: _obscureText,
-    //   enableInteractiveSelection: false,
-    //   validator: (value) => (value!.isEmpty) ? "Please Enter Password" : null,
-    //   style: style,
-    //   decoration: InputDecoration(
-    //     floatingLabelBehavior: FloatingLabelBehavior.never,
-    //       prefixIcon: Icon(Icons.lock),
-    //       suffix: GestureDetector(
-    //         onTap: _togglePassword,
-    //         child: Text( _obscureText ? "Show" : "Hide",
-    //           style: TextStyle(
-    //             fontSize: 15,
-    //             color: Colors.blueAccent
-    //           ),),
-    //       ),
-    //       labelText: "Password",
-    //       border: OutlineInputBorder()),
-    // );
   }
 
   Widget _loginButton() {

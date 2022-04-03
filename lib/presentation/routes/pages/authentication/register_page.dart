@@ -48,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
           key: _formPageKey,
           child: SingleChildScrollView(
             child: Container(
-              height: MediaQuery.of(context).size.height,
+              height: SizeConfig.screenHeight,
               child: Stack(
                 children: <Widget>[
                   Positioned(
@@ -135,7 +135,7 @@ class _RegisterPageState extends State<RegisterPage> {
     ) : GestureDetector(
       onTap: (){
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BottomNavBar()));
+            MaterialPageRoute(builder: (context) => CustomBottomNavigationBar()));
       },
       child: Container(
         child: Text(
@@ -190,7 +190,7 @@ class _RegisterPageState extends State<RegisterPage> {
       title: 'Email',
       textFormKey: Key("userEmail"),
       controller: _userEmail,
-      obscureText: _obscureText,
+      obscureText: false,
       enableInteractive: false,
       validator: (value) => (value!.isEmpty) ? "Please Enter Email" : null,
       prefixIcon: Icon(Icons.email),

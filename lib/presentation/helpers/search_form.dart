@@ -22,7 +22,7 @@ class SearchForm extends StatelessWidget {
             suffixIcon: ElevatedButton(
               onPressed: () {  },
               style: ElevatedButton.styleFrom(
-                  primary: Constants.primaryColor,
+                  primary: Color(0xFF6D90B9),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(Constants.defaultBorderRadius))
                   )

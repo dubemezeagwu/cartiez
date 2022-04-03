@@ -24,33 +24,5 @@ class _CheckoutCartPageState extends State<CheckoutCartPage> {
         ),
       )
     );
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: Text("Cart"),
-    //   ),
-    //   body: BlocBuilder<CartBloc, CartState>(
-    //     builder: (context, state) {
-    //       if (state is CartLoading){
-    //         return Center(
-    //             child: CircularProgressIndicator()
-    //         );
-    //       }
-    //       if (state is CartLoaded){
-    //         return Column(
-    //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //           mainAxisSize: MainAxisSize.max,
-    //           children: [
-    //             Align(
-    //                 alignment: Alignment.bottomCenter,
-    //                 child: ElevatedButton(onPressed: () {},
-    //                     child: Text("GO TO CHECKOUT")))
-    //           ],
-    //         );
-    //       } else {
-    //         return Center(child: Text("Something went wrong"));
-    //       }
-    //     },
-    //   ),
-    // );
   }
 }
