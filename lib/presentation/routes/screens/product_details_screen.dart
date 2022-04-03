@@ -1,9 +1,10 @@
-import 'package:cartiez/bloc/checkout_cart_bloc.dart';
+import 'package:cartiez/bloc/get_products_bloc.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../bloc/cart/cart_bloc.dart';
 import '../../../data/models/product.dart';
 import '../../helpers/color_dot.dart';
 
@@ -104,20 +105,35 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         child: SizedBox(
                         width: 200,
                         height: 48,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            context.read<AddToCheckoutCart>().ad
+                        child: BlocBuilder<CartBloc, CartState>(
+                            builder: (context, state) {
+                          if (state is CartLoading) {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          if (state is CartLoaded){
+                            return ElevatedButton(
+                              onPressed: () {
+
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Constants.primaryColor,
+                                  shape: const StadiumBorder()
+                              ),
+                              child: Text("Add to Cart"),);
+                          } else {
+                            return Text("Something went wrong");
+                          }
                           },
-                          style: ElevatedButton.styleFrom(
-                            primary: Constants.primaryColor,
-                            shape: const StadiumBorder()
-                          ),
-                          child: Text("Add to Cart"),)
-                      ),)
+                        )
+                      ),
+                      )
                     ],
                   ),
                 ),
-              ))
+              )
+          )
         ],
       ),
     );

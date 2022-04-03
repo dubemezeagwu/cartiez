@@ -1,4 +1,5 @@
 import 'package:cartiez/presentation/helpers/custom_textfield.dart';
+import 'package:cartiez/presentation/helpers/navigation_widget.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:cartiez/utils/shape/bezier_container.dart';
 import 'package:cartiez/utils/styles.dart';
@@ -132,7 +133,10 @@ class _RegisterPageState extends State<RegisterPage> {
         ? Center(
             child: Constants.chuckyLoading("Registering new user..."),
     ) : GestureDetector(
-      onTap: () {},
+      onTap: (){
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => BottomNavBar()));
+      },
       child: Container(
         child: Text(
           'Register Now',
@@ -196,7 +200,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _passwordField() {
     return CustomTextField(
       enabled: true,
-      title: 'Show Password',
+      title: 'Enter Password',
       textFormKey: Key("userPassword"),
       controller: _userPassword,
       obscureText: _obscureText,

@@ -1,5 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:cartiez/bloc/checkout_cart_bloc.dart';
+import 'package:cartiez/bloc/cart/cart_bloc.dart';
+import 'package:cartiez/presentation/app_routing.dart';
+import 'package:cartiez/presentation/helpers/navigation_widget.dart';
 import 'package:cartiez/presentation/routes/pages/authentication/login_page.dart';
 import 'package:cartiez/presentation/routes/pages/authentication/register_page.dart';
 import 'package:cartiez/utils/constants.dart';
@@ -23,11 +25,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-            create: (context) => CheckoutCartBloc()..add(LoadCheckoutCart())
-        )
+        BlocProvider(create: (_) => CartBloc()..add(CartStarted()))
       ],
       child: MaterialApp(
+        onGenerateRoute: AppRouter.generateRoute,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ThemeData().colorScheme.copyWith(

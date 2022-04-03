@@ -33,6 +33,5 @@ class ProductsListBloc with ChangeNotifier{
   dispose (){
     _behaviorSubject.close();
   }
-
   BehaviorSubject<List<Product>> get subject => _behaviorSubject;
 }
