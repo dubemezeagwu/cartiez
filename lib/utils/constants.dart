@@ -48,7 +48,7 @@ class Constants{
       itemBuilder: (BuildContext context, int index) {
         return DecoratedBox(
           decoration: BoxDecoration(
-            color: index.isEven ? Color(0xFFFFFFFF) : Color(0xFF311433),
+            color: index.isEven ? Color(0xFFFFFFFF) : Color(0xFF437180),
           ),
         );
       },

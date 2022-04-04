@@ -1,3 +1,5 @@
+import 'package:cartiez/utils/size_config.dart';
+import 'package:cartiez/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants.dart';
@@ -22,40 +24,35 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Container(
-        width: 154,
         padding: EdgeInsets.all(Constants.defaultPadding),
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Constants.itemBackgroundColor,
             borderRadius: BorderRadius.all(Radius.circular(Constants.defaultBorderRadius))
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
-              width: double.infinity,
+              width: getProportionateScreenWidth(100),
               decoration: BoxDecoration(
-                  color: backgroundColor,
                   borderRadius: BorderRadius.all(Radius.circular(Constants.defaultBorderRadius))
               ),
-              child: Image.network(image, height: 150,),
+              child: Image.network(
+                image, height: getProportionateScreenHeight(100),
+              fit: BoxFit.fill,),
             ),
-            const SizedBox(height: Constants.defaultPadding/2),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    title,
-                    overflow: title.length > 5 ? TextOverflow.ellipsis : null,
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: Constants.defaultPadding/4,),
-                Text(
-                  "\$" + price.toString(),
-                  style: Theme.of(context).textTheme.subtitle2,
-                ),
-              ],
+            Container(
+              width: getProportionateScreenWidth(100),
+              child: Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: regular11
+              ),
+            ),
+            Text(
+              "\$" + price.toString(),
+              style: medium14,
             )
           ],
         ),

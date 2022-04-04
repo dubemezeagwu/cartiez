@@ -16,7 +16,7 @@ class _CartProductCardState extends State<CartProductCard> {
          margin: EdgeInsets.symmetric(vertical: 4.0),
          padding: EdgeInsets.symmetric(horizontal: 8.0),
          decoration: BoxDecoration(
-           color: Constants.primaryColor,
+           color: Constants.itemBackgroundColor,
            borderRadius: BorderRadius.only(
              topLeft: Radius.circular(20),
              topRight: Radius.circular(20),
@@ -53,7 +53,7 @@ class _CartProductCardState extends State<CartProductCard> {
                      children: [
                        Container(
                          width: 100,
-                         child: Text("Hawaiian Air Trinket Hola Shirt",style: bold14,),
+                         child: Text("Hawaiian Air Trinket Hola Shirt",style: regular14,),
                        ),
                        Container(
                          width: 30.0,
@@ -75,7 +75,7 @@ class _CartProductCardState extends State<CartProductCard> {
                          width: 20.0,
                          height: 20.0,
                          decoration: BoxDecoration(
-                           color: Colors.grey,
+                           color: Constants.primaryColor,
                            borderRadius: BorderRadius.circular(4.0)
                          ),
                          child: InkWell(
@@ -91,7 +91,7 @@ class _CartProductCardState extends State<CartProductCard> {
                          width: 20.0,
                          height: 20.0,
                          decoration: BoxDecoration(
-                             color: Colors.grey,
+                             color: Constants.primaryColor,
                              borderRadius: BorderRadius.circular(4.0)
                          ),
                          child: InkWell(
@@ -103,7 +103,7 @@ class _CartProductCardState extends State<CartProductCard> {
                          margin: EdgeInsets.only(bottom: 8),
                          padding: EdgeInsets.all(8),
                          decoration: BoxDecoration(
-                             color: Colors.grey,
+                             color: Constants.primaryColor,
                              borderRadius: BorderRadius.circular(30)
                          ),
                          child: Text("\$667.99", style: bold11,),

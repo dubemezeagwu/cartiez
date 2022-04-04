@@ -32,7 +32,7 @@ class _ProductListState extends State<ProductList> {
             return buildListView(snapshot);
           }
           return Center(
-              child: CircularProgressIndicator()
+              child: Constants.chuckyLoader()
           );
         });
   }
