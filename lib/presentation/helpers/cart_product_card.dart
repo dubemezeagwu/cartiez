@@ -1,9 +1,11 @@
+import 'package:cartiez/data/models/product.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:cartiez/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class CartProductCard extends StatefulWidget {
-  const CartProductCard({Key? key}) : super(key: key);
+  const CartProductCard({Key? key, required this.product}) : super(key: key);
+  final Product product;
 
   @override
   State<CartProductCard> createState() => _CartProductCardState();
@@ -31,14 +33,14 @@ class _CartProductCardState extends State<CartProductCard> {
                width: 80.0,
                height: 80.0,
                decoration: BoxDecoration(
-                 color: Colors.orangeAccent,
+                 color: Colors.transparent,
                  borderRadius: BorderRadius.circular(20),
                ),
                child: Center(
                  child: Container(
                    width: 80,
                    height: 80,
-                   child: Image.asset("assets/images/product_0.png"),
+                   child: Image.network(widget.product.image),
                  ),
                ),
              ),
@@ -53,7 +55,7 @@ class _CartProductCardState extends State<CartProductCard> {
                      children: [
                        Container(
                          width: 100,
-                         child: Text("Hawaiian Air Trinket Hola Shirt",style: regular14,),
+                         child: Text(widget.product.title,style: regular14,),
                        ),
                        Container(
                          width: 30.0,
@@ -106,7 +108,7 @@ class _CartProductCardState extends State<CartProductCard> {
                              color: Constants.primaryColor,
                              borderRadius: BorderRadius.circular(30)
                          ),
-                         child: Text("\$667.99", style: bold11,),
+                         child: Text("\$" + widget.product.price.toString(), style: bold11,),
                        )
                      ],
                    )
@@ -117,53 +119,5 @@ class _CartProductCardState extends State<CartProductCard> {
            ],
          ),
        );
-    // return Container(
-    //   decoration: BoxDecoration(
-    //     borderRadius: BorderRadius.circular(5),
-    //     color: Colors.blueGrey
-    //   ),
-    //   height: 62,
-    //   width: 315,
-    //   child: Row(
-    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //     children: [
-    //       Image.asset(
-    //           "assets/images/product_0.png",
-    //         height: 100,
-    //         width: 200,
-    //       ),
-    //       Column(
-    //         mainAxisAlignment: MainAxisAlignment.center,
-    //         children: [
-    //         Text("Soft Drink #1"),
-    //         Text("2.99"),
-    //       ],
-    //       ),
-    //       Spacer(flex: 6,),
-    //       ClipOval(
-    //         child: Material(
-    //           color: Colors.white, // Button color
-    //           child: InkWell(
-    //             onTap: () {},
-    //             child: SizedBox(width: 30, height: 30, child: Icon(Icons.add)),
-    //           ),
-    //         ),
-    //       ),
-    //       Padding(
-    //         padding: const EdgeInsets.all(8.0),
-    //         child: Text("1"),
-    //       ),
-    //       ClipOval(
-    //         child: Material(
-    //           color: Colors.white, // Button color
-    //           child: InkWell(
-    //             onTap: () {},
-    //             child: SizedBox(width: 30, height: 30, child: Icon(Icons.remove)),
-    //           ),
-    //         ),
-    //       )
-    //     ],
-    //   ),
-    // );
   }
 }

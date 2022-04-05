@@ -105,28 +105,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         child: SizedBox(
                         width: 200,
                         height: 48,
-                        child: BlocBuilder<CartBloc, CartState>(
-                            builder: (context, state) {
-                          if (state is CartLoading) {
-                            return Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                          if (state is CartLoaded){
-                            return ElevatedButton(
-                              onPressed: () {
-
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  primary: Constants.primaryColor,
-                                  shape: const StadiumBorder()
-                              ),
-                              child: Text("Add to Cart"),);
-                          } else {
-                            return Text("Something went wrong");
-                          }
-                          },
-                        )
+                        child: AddToCartButton(product: widget.product,)
                       ),
                       )
                     ],
@@ -140,5 +119,41 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 }
 
+class AddToCartButton extends StatefulWidget {
+  const AddToCartButton({
+    Key? key, required this.product,
+  }) : super(key: key);
+
+  final Product product;
+
+  @override
+  State<AddToCartButton> createState() => _AddToCartButtonState();
+}
+
+class _AddToCartButtonState extends State<AddToCartButton> {
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CartBloc, CartState>(
+        builder: (context, state){
+          if (state is CartLoading){
+            return CircularProgressIndicator();
+          }
+          if (state is CartLoaded){
+            final productsInCart = state.cart.products.contains(widget.product);
+            return ElevatedButton(
+                onPressed: productsInCart ? null : () => context.read<CartBloc>().add(CartProductAdded(product: widget.product)),
+                style: ElevatedButton.styleFrom(
+                    primary: Constants.primaryColor,
+                    shape: const StadiumBorder()
+                ),
+                child: Text("Add to Cart")
+            );
+          }
+          return const Text("Something went wrong");
+        },
+    );
+  }
+}
 
 
