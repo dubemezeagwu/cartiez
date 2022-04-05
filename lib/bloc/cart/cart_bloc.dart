@@ -1,57 +1,61 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:cartiez/data/models/cart.dart';
-import 'package:cartiez/data/models/product.dart';
+import 'package:cartiez/data/repository/cart_repository.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../data/models/cart.dart';
+import '../../data/models/product.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartLoading()) ;
+  CartBloc({required this.cartRepository}) : super(CartLoading()) {
+    on<CartStarted>(_onStarted);
+    on<CartProductAdded>(_onProductAdded);
+    on<CartProductRemoved>(_onProductRemoved);
+  }
 
-  Stream<CartState> mapEventToState(CartEvent event) async* {
-    if(event is CartStarted){
-      yield* _mapCartStartedToState();
-    } else if (event is CartProductAdded){
-      yield* _mapCartProductAddedToState(event, state);
-    } else if (event is CartProductRemoved){
-      yield* _mapCartProductRemovedToState(event, state);
+  final CartRepository cartRepository;
+
+  void _onStarted(CartStarted event, Emitter<CartState> emit) async {
+    emit (CartLoading());
+    try{
+      final cartItem = await cartRepository.loadCartItems();
+      emit(CartLoaded(cart: Cart(products: [...cartItem])));
+    } catch (_){
+      emit(CartError());
     }
   }
 
-  Stream<CartState> _mapCartStartedToState() async* {
-    yield CartLoading();
-    try {
-      await Future<void>.delayed(Duration(seconds: 2));
-      yield CartLoaded();
-    } catch (_){}
-  }
-
-  Stream<CartState> _mapCartProductAddedToState (
-      CartProductAdded event,
-      CartState state
-      ) async* {
-    if (state is CartLoaded) {
-      try{
-        yield CartLoaded(cart: Cart(
-          products: List.from(state.cart.products)..add(event.product)
-        ));
-      } catch (_){}
+  void _onProductAdded(CartProductAdded event, Emitter<CartState> emit) async {
+    final state = this.state;
+    if (state is CartLoaded){
+      try {
+        cartRepository.addItemToCart(event.product);
+        emit (CartLoaded(cart: Cart(products: [...state.cart.products, event.product])));
+      } catch (_){
+        emit(CartError());
+      }
     }
   }
 
-  Stream<CartState> _mapCartProductRemovedToState (
-      CartProductRemoved event,
-      CartState state
-      ) async* {
-    if (state is CartLoaded) {
+  void _onProductRemoved(CartProductRemoved event, Emitter<CartState> emit) async {
+    final state = this.state;
+    if(state is CartLoaded){
       try{
-        yield CartLoaded(cart: Cart(
-            products: List.from(state.cart.products)..remove(event.product)
-        ));
-      } catch (_){}
+        cartRepository.removeItemFromCart(event.product);
+        emit(
+          CartLoaded(
+            cart: Cart(
+              products: [...state.cart.products]..remove(event.product),
+            )
+          )
+        );
+      } catch (_){
+        emit(CartError());
+      }
     }
   }
 }

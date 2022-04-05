@@ -23,38 +23,33 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => CartBloc()..add(CartStarted()))
-      ],
-      child: MaterialApp(
-        onGenerateRoute: AppRouter.generateRoute,
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ThemeData().colorScheme.copyWith(
-              primary: Constants.primaryColor,),
-          scaffoldBackgroundColor: Constants.bgColor,
-          primarySwatch: Colors.blue,
-          fontFamily: GoogleFonts.montserrat().fontFamily,
-          appBarTheme: AppBarTheme(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-          textTheme: TextTheme(
-            bodyText2: TextStyle(color: Colors.black54),
+    return MaterialApp(
+      onGenerateRoute: AppRouter.generateRoute,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ThemeData().colorScheme.copyWith(
+            primary: Constants.primaryColor,),
+        scaffoldBackgroundColor: Constants.bgColor,
+        primarySwatch: Colors.blue,
+        fontFamily: GoogleFonts.montserrat().fontFamily,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        textTheme: TextTheme(
+          bodyText2: TextStyle(color: Colors.black54),
+        ),
+      ),
+      home: AnimatedSplashScreen(
+          nextScreen: const RegisterPage(),
+          pageTransitionType: PageTransitionType.bottomToTop,
+          splashIconSize: 300.0,
+          splash: LottieBuilder.asset(
+            "assets/anim/shopping-cart.json",
+            repeat: false,
           ),
         ),
-        home: AnimatedSplashScreen(
-            nextScreen: const RegisterPage(),
-            pageTransitionType: PageTransitionType.bottomToTop,
-            splashIconSize: 300.0,
-            splash: LottieBuilder.asset(
-              "assets/anim/shopping-cart.json",
-              repeat: false,
-            ),
-          ),
 
-      ),
     );
   }
 }
