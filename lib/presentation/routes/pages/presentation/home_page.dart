@@ -82,11 +82,11 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: Constants.defaultPadding,
             ),
-            SectionTile(title: "New Arrivals", pressSeeAll: () { },),
+            SectionTile(title: "NEW ARRIVALS", pressSeeAll: () { },),
             SizedBox(
               height: 250,
                 child: ProductList()),
-            SectionTile(title: "Popular", pressSeeAll: (){},),
+            SectionTile(title: "POPULAR", pressSeeAll: (){},),
             SizedBox(
               height: 250,
                 child: ProductList())

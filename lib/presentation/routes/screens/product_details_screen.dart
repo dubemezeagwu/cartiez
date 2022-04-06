@@ -142,7 +142,9 @@ class _AddToCartButtonState extends State<AddToCartButton> {
           if (state is CartLoaded){
             final productsInCart = state.cart.products.contains(widget.product);
             return ElevatedButton(
-                onPressed: productsInCart ? null : () => context.read<CartBloc>().add(CartProductAdded(product: widget.product)),
+                onPressed: productsInCart
+                    ? null
+                    : () => context.read<CartBloc>().add(CartProductAdded(product: widget.product)),
                 style: ElevatedButton.styleFrom(
                     primary: Constants.primaryColor,
                     shape: const StadiumBorder()

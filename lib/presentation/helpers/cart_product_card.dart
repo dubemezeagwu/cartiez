@@ -1,7 +1,9 @@
+import 'package:cartiez/bloc/cart/cart_bloc.dart';
 import 'package:cartiez/data/models/product.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:cartiez/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartProductCard extends StatefulWidget {
   const CartProductCard({Key? key, required this.product}) : super(key: key);
@@ -15,6 +17,7 @@ class _CartProductCardState extends State<CartProductCard> {
   @override
   Widget build(BuildContext context) {
        return Container(
+         height: 150,
          margin: EdgeInsets.symmetric(vertical: 4.0),
          padding: EdgeInsets.symmetric(horizontal: 8.0),
          decoration: BoxDecoration(
@@ -27,6 +30,7 @@ class _CartProductCardState extends State<CartProductCard> {
            )
          ),
          child: Row(
+           mainAxisAlignment: MainAxisAlignment.spaceAround,
            children: [
              Container(
                margin: EdgeInsets.all(8.0),
@@ -45,7 +49,8 @@ class _CartProductCardState extends State<CartProductCard> {
                ),
              ),
              SizedBox(width: 12,),
-             Expanded(
+             Container(
+               width: 250,
                child: Column(
                  crossAxisAlignment: CrossAxisAlignment.start,
                  mainAxisAlignment: MainAxisAlignment.center,
@@ -65,52 +70,55 @@ class _CartProductCardState extends State<CartProductCard> {
                              borderRadius: BorderRadius.circular(4.0)
                          ),
                          child: InkWell(
-                             onTap: (){},
+                             onTap: (){
+                               context.read<CartBloc>().add(CartProductRemoved(product: widget.product));
+                             },
                              child: Icon(Icons.cancel_outlined, color: Colors.redAccent, size: 24,)),
                        ),
                      ],
                    ),
                    SizedBox(height: 8),
-                   Row(
-                     children: [
-                       Container(
-                         width: 20.0,
-                         height: 20.0,
-                         decoration: BoxDecoration(
-                           color: Constants.primaryColor,
-                           borderRadius: BorderRadius.circular(4.0)
-                         ),
-                         child: InkWell(
-                           onTap: (){},
-                             child: Icon(Icons.remove, color: Colors.black, size: 18,)
-                         ),
-                       ),
-                       Padding(
-                         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                         child: Text("1", style: medium20,),
-                       ),
-                       Container(
-                         width: 20.0,
-                         height: 20.0,
-                         decoration: BoxDecoration(
+                   SizedBox(
+                     width: 250,
+                     child: Row(
+                       children: [
+                         Container(
+                           decoration: BoxDecoration(
                              color: Constants.primaryColor,
                              borderRadius: BorderRadius.circular(4.0)
+                           ),
+                           child: InkWell(
+                             onTap: (){},
+                               child: Icon(Icons.remove, color: Colors.black, size: 18,)
+                           ),
                          ),
-                         child: InkWell(
-                           onTap: (){},
-                             child: Icon(Icons.add, color: Colors.black, size: 18,)),
-                       ),
-                       Spacer(),
-                       Container(
-                         margin: EdgeInsets.only(bottom: 8),
-                         padding: EdgeInsets.all(8),
-                         decoration: BoxDecoration(
-                             color: Constants.primaryColor,
-                             borderRadius: BorderRadius.circular(30)
+                         Padding(
+                           padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                           child: Text("1", style: medium20,),
                          ),
-                         child: Text("\$" + widget.product.price.toString(), style: bold11,),
-                       )
-                     ],
+                         Container(
+                           width: 20.0,
+                           height: 20.0,
+                           decoration: BoxDecoration(
+                               color: Constants.primaryColor,
+                               borderRadius: BorderRadius.circular(4.0)
+                           ),
+                           child: InkWell(
+                             onTap: (){},
+                               child: Icon(Icons.add, color: Colors.black, size: 18,)),
+                         ),
+                         Spacer(),
+                         Container(
+                           margin: EdgeInsets.only(bottom: 8),
+                           padding: EdgeInsets.all(8),
+                           decoration: BoxDecoration(
+                               color: Constants.primaryColor,
+                               borderRadius: BorderRadius.circular(30)
+                           ),
+                           child: Text("\$" + widget.product.price.toString(), style: bold11,),
+                         )
+                       ],
+                     ),
                    )
                  ],
                ),
