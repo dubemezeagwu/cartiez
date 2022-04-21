@@ -35,6 +35,7 @@ dependencies:
   animated_splash_screen: ^1.2.0
   google_fonts: ^2.3.1
   lottie: ^1.2.2
+  introduction_screen: ^3.0.2
   page_transition: '^2.0.5'
 
   #bloc & state management

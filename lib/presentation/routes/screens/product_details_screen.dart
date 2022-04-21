@@ -140,7 +140,7 @@ class _AddToCartButtonState extends State<AddToCartButton> {
             return CircularProgressIndicator();
           }
           if (state is CartLoaded){
-            final productsInCart = state.cart.products.contains(widget.product);
+            final productsInCart = state.cart.products.contains(widget.product.id);
             return ElevatedButton(
                 onPressed: productsInCart
                     ? null

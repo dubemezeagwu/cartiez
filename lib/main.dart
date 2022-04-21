@@ -5,6 +5,7 @@ import 'package:cartiez/presentation/app_routing.dart';
 import 'package:cartiez/presentation/helpers/navigation_widget.dart';
 import 'package:cartiez/presentation/routes/pages/authentication/login_page.dart';
 import 'package:cartiez/presentation/routes/pages/authentication/register_page.dart';
+import 'package:cartiez/presentation/routes/pages/onboarding/onboarding_page.dart';
 import 'package:cartiez/utils/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         home: AnimatedSplashScreen(
-            nextScreen: const RegisterPage(),
+            nextScreen: const OnBoardingPage(),
             pageTransitionType: PageTransitionType.bottomToTop,
             splashIconSize: 300.0,
             splash: LottieBuilder.asset(
