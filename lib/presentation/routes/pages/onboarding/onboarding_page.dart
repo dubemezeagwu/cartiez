@@ -34,9 +34,8 @@ class OnBoardingPage extends StatelessWidget {
           showNextButton: true,
           showSkipButton: true,
           isBottomSafeArea: true,
-          skip:
-          const Text("Skip", style: TextStyle(fontWeight: FontWeight.w600)),
-          next: const Icon(Icons.forward),
+          skip: const Text("Skip", style: TextStyle(fontWeight: FontWeight.w600)),
+          next: const Text("Next", style: TextStyle(fontWeight: FontWeight.w600)),
           done:
           const Text("Done", style: TextStyle(fontWeight: FontWeight.w600)),
           dotsDecorator: getDotsDecorator()),

@@ -14,59 +14,63 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: Constants.defaultPadding),
-            child: ReusableCard(
-              boxShadowColor: Colors.blueGrey,
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.blueGrey,
-                          child: Icon(Icons.person, size: 50,),
-                          radius: 50,
-                        )),
-                    Column(
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: Constants.defaultPadding),
+                child: ReusableCard(
+                    boxShadowColor: Colors.blueGrey,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Align (
-                          alignment: Alignment.centerRight,
-                            child: Text(
-                              "Jonah Moss",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20
-                              ),
+                        Align(
+                            alignment: Alignment.centerLeft,
+                            child: CircleAvatar(
+                              backgroundColor: Colors.blueGrey,
+                              child: Icon(Icons.person, size: 50,),
+                              radius: 50,
                             )),
-                        Align (
-                          alignment: Alignment.centerRight,
-                            child: Text(
-                              "San Diego, CA",
-                              style: TextStyle(),
-                            )),
-                        // Align (
-                        //     alignment: Alignment.topRight,
-                        //     child: Text(
-                        //       "\$1270",
-                        //       style: TextStyle(
-                        //         fontSize: 30,
-                        //         fontWeight: FontWeight.bold,
-                        //         color: Colors.black
-                        //       ),
-                        //     ))
+                        Column(
+                          children: [
+                            Align (
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  "Jonah Moss",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20
+                                  ),
+                                )),
+                            Align (
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  "San Diego, CA",
+                                  style: TextStyle(),
+                                )),
+                            // Align (
+                            //     alignment: Alignment.topRight,
+                            //     child: Text(
+                            //       "\$1270",
+                            //       style: TextStyle(
+                            //         fontSize: 30,
+                            //         fontWeight: FontWeight.bold,
+                            //         color: Colors.black
+                            //       ),
+                            //     ))
+                          ],
+                        ),
                       ],
-                    ),
-                  ],
-                )),
+                    )),
+              ),
+              SizedBox(height: 20,),
+              CardSection()
+            ],
           ),
-          SizedBox(height: 20,),
-          CardSection()
-        ],
+        ),
       ),
     );
   }
