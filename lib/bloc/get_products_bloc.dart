@@ -3,14 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../data/models/product.dart';
-import '../data/services/network/api_service.dart';
+import '../data/services/network/products_api.dart';
 
 final productsBloc = ProductsListBloc();
 
 class ProductsListBloc with ChangeNotifier{
 
   // Network object instance
-  final ApiService _apiService = ApiService();
+  final ProductsAPI _apiService = ProductsAPI();
   Progress result = Progress.FAILED;
 
   // Observable subject

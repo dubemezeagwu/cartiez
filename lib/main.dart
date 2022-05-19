@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:cartiez/bloc/app_bloc_observer.dart';
 import 'package:cartiez/bloc/cart/cart_bloc.dart';
 import 'package:cartiez/data/repository/cart_repository.dart';
 import 'package:cartiez/locator.dart';
@@ -16,11 +17,16 @@ import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 
 
-void main() async {
-  setupLocator();
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MyApp());
+Future <void> main()  async {
+  // setupLocator();
+  return BlocOverrides.runZoned(
+        () async {
+          WidgetsFlutterBinding.ensureInitialized();
+          await Firebase.initializeApp();
+          runApp(MyApp());
+        },
+        blocObserver: AppBlocObserver(),
+  );
 }
 
 class MyApp extends StatelessWidget {

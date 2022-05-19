@@ -37,6 +37,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
+  void dispose() {
+    _userEmail.dispose();
+    _userPassword.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return GestureDetector(
@@ -161,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
     return isLoading ? Center(
          child: Constants.chuckyLoading("Logging in..."),
     ) : GestureDetector(
-      onTap: ()  {},
+      onTap: () {},
       child: Container(
         child: Text(
           'Login',
