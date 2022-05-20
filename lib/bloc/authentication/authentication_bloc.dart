@@ -17,13 +17,19 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   final AuthenticationService _authenticationService;
 
   AuthenticationBloc(this._authenticationService) : super(AuthenticationInitial()) {
-    on<AuthenticationEvent>();
+    on<AuthenticationEvent>(_onAuthenticationRequested);
   }
 
-  void _onAuthenticationRequested (AuthenticationRequestedEvent event, Emitter<AuthenticationState> emit) async {
+  void _onAuthenticationRequested (AuthenticationEvent event, Emitter<AuthenticationState> emit) async {
     emit(AuthenticationInProgressSate());
     try {
-      final
-    }catch (_){}
+      final Future<bool> isSignedIn = _authenticationService.isSignedIn();
+      if (isSignedIn == true){
+        var user = await _authenticationService.getCurrentUser();
+        emit(AuthenticatedState(user: user));
+      }
+    }catch (_){
+      emit(AuthenticationFailedState());
+    }
   }
 }

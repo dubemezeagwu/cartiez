@@ -2,6 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:cartiez/bloc/app_bloc_observer.dart';
 import 'package:cartiez/bloc/cart/cart_bloc.dart';
 import 'package:cartiez/data/repository/cart_repository.dart';
+import 'package:cartiez/data/repository/network_repository.dart';
 import 'package:cartiez/locator.dart';
 import 'package:cartiez/presentation/app_routing.dart';
 import 'package:cartiez/presentation/helpers/navigation_widget.dart';
@@ -33,40 +34,46 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiRepositoryProvider(
       providers: [
-        BlocProvider(
-            create: (_) => CartBloc(cartRepository: CartRepository())..add(CartStarted())
-        )
-
+        RepositoryProvider(create: (context) => NetworkRepository()),
+        RepositoryProvider(create: (context) => CartRepository())
       ],
-      child: MaterialApp(
-        onGenerateRoute: AppRouter.generateRoute,
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ThemeData().colorScheme.copyWith(
-              primary: Constants.primaryColor,),
-          scaffoldBackgroundColor: Constants.bgColor,
-          primarySwatch: Colors.blue,
-          fontFamily: GoogleFonts.montserrat().fontFamily,
-          appBarTheme: AppBarTheme(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-          textTheme: TextTheme(
-            bodyText2: TextStyle(color: Colors.black54),
-          ),
-        ),
-        home: AnimatedSplashScreen(
-            nextScreen: const OnBoardingPage(),
-            pageTransitionType: PageTransitionType.bottomToTop,
-            splashIconSize: 300.0,
-            splash: LottieBuilder.asset(
-              "assets/anim/shopping-cart.json",
-              repeat: false,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+              create: (context) => CartBloc(cartRepository: RepositoryProvider.of<CartRepository>(context))
+          )
+
+        ],
+        child: MaterialApp(
+          onGenerateRoute: AppRouter.generateRoute,
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ThemeData().colorScheme.copyWith(
+                primary: Constants.primaryColor,),
+            scaffoldBackgroundColor: Constants.bgColor,
+            primarySwatch: Colors.blue,
+            fontFamily: GoogleFonts.montserrat().fontFamily,
+            appBarTheme: AppBarTheme(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            textTheme: TextTheme(
+              bodyText2: TextStyle(color: Colors.black54),
             ),
           ),
+          home: AnimatedSplashScreen(
+              nextScreen: const OnBoardingPage(),
+              pageTransitionType: PageTransitionType.bottomToTop,
+              splashIconSize: 300.0,
+              splash: LottieBuilder.asset(
+                "assets/anim/shopping-cart.json",
+                repeat: false,
+              ),
+            ),
 
+        ),
       ),
     );
   }

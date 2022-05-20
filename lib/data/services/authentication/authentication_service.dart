@@ -59,8 +59,13 @@ class AuthenticationService {
     }
   }
 
+  // Checks whether a user is signed in or not.
   Future<bool> isSignedIn () async {
     var currentUser = await auth.currentUser!;
-    return currentUser;
+    return (currentUser != null) ? true : false;
+  }
+
+  Future<User> getCurrentUser() async {
+    return await FirebaseAuth.instance.currentUser!;
   }
 }

@@ -14,6 +14,10 @@ class AuthenticationInProgressSate extends AuthenticationState{
   List<Object?> get props => [];
 }
 
+class AuthenticationFailedState extends AuthenticationState {
+
+  List<Object?> get props => [];
+}
 class AuthenticatedState extends AuthenticationState {
   User user;
   AuthenticatedState({required this.user});
