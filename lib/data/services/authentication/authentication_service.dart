@@ -58,4 +58,9 @@ class AuthenticationService {
       print(exception.toString());
     }
   }
+
+  Future<bool> isSignedIn () async {
+    var currentUser = await auth.currentUser!;
+    return currentUser;
+  }
 }

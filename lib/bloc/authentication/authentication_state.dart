@@ -9,15 +9,19 @@ class AuthenticationInitial extends AuthenticationState {
   List<Object> get props => [];
 }
 
-class AuthenticatedState extends AuthenticationState {
+class AuthenticationInProgressSate extends AuthenticationState{
+  @override
+  List<Object?> get props => [];
+}
 
+class AuthenticatedState extends AuthenticationState {
   User user;
   AuthenticatedState({required this.user});
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class NotAuthenticatedState extends AuthenticationState {
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
