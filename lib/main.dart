@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:cartiez/bloc/app_bloc_observer.dart';
 import 'package:cartiez/bloc/cart/cart_bloc.dart';
+import 'package:cartiez/bloc/products/products_bloc.dart';
 import 'package:cartiez/data/repository/cart_repository.dart';
 import 'package:cartiez/data/repository/network_repository.dart';
 import 'package:cartiez/locator.dart';
@@ -41,9 +42,10 @@ class MyApp extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(
-              create: (context) => CartBloc(cartRepository: RepositoryProvider.of<CartRepository>(context))
-          )
+          BlocProvider(create: (context) => CartBloc(cartRepository: RepositoryProvider.of<CartRepository>(context))),
+
+          // ..add will call the LoadProductsEvent on the creation of this bloc.
+          BlocProvider(create: (context) => ProductsBloc(RepositoryProvider.of<NetworkRepository>(context))..add(LoadProductsEvent()))
 
         ],
         child: MaterialApp(
