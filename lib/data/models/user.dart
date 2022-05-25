@@ -5,7 +5,7 @@ class MyUser extends Equatable{
 
   final String userId;
 
-  MyUser({
+  const MyUser({
     required this.userId
   });
 
